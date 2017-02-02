@@ -1,0 +1,10 @@
+{
+  "fontsize": 8,
+  "figsize":  [2,2],
+  "formats":  ["svg"],
+  "color":    "black",
+  "figfile":  "plconf_saddle",
+  "modfile":  "tmstoch.json",
+  "contfile": "cont_I.shv",
+  "workdir":  "/pj/channelprcs/sim"
+}
