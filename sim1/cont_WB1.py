@@ -103,32 +103,31 @@ unames,pnames= autoutils.writeFP('tm',
 #pdb.set_trace()
 ################
 # CONT FP & LC #
+autobifpar['Cm'] = 0.005
 r1= auto.run([float(getattr(states,j)[0][-1]) for j in var], e='tm',
     c='tm', parnames= pnames, unames=unames,
-    ICP=['I', 'Cm'], ISP=1,ILP=1, SP=['LP','HB','BP'],
+    ICP=['I','Cm'], ISP=1,ILP=1, SP=['LP','HB','BP'],
     PAR=autobifpar, ITNW=17, NWTN=13, NMX=500000, NPR=500000,
-    DS=1e-6, DSMAX=1e-5, STOP=['HB1'],
-    UZSTOP= {'I': 350.0})
+    DS=1e-6, DSMAX=1e-5, #STOP=['HB1'],
+    UZSTOP= {'I': 0.5})
 
 s1HB = r1.getLabel('HB')[0]
 s1LP = r1.getLabel('LP')[0]
-pdb.set_trace()
+#pdb.set_trace()
 
 
-##Now: continuate HB in I/Cm - direction.
+##Now: continue HB in I/Cm - direction.
 direction = 1
-runBranch = auto.run(s1HB, e='tm', c='tm',
+runBranch = auto.run(s1LP, e='tm', c='tm',
                  parnames=pnames, unames=unames,
-                 ICP=['I'],
-                 ISP=2,ILP=1, SP=['LP','HB','BP'],   # ISP: Bifurcation detection; 0=off, 1=BP(FP), 3=BP(PO,BVP), 2=all | ILP: Fold detection; 1=on, 0=off
-                 ISW=1, # ISW: Branch switching; 1=normal, -1=switch branch (BP, HB, PD), 2=switch to two-parameter continuation (LP, BP, HB, TR), 3=switch to three-parameter continuation (BP)
-                 ITNW=17, NWTN=13, NMX=10000, NPR=2000, #Not sure if needed: PAR=autobifpar,
-                 DS=direction*1e-6, DSMAX=1e-5,
+                 ICP=['Cm','I'],
+                 ISP=2,ILP=1,# SP=['LP','HB','BP'],   # ISP: Bifurcation detection; 0=off, 1=BP(FP), 3=BP(PO,BVP), 2=all | ILP: Fold detection; 1=on, 0=off
+                 ISW=2, # ISW: Branch switching; 1=normal, -1=switch branch (BP, HB, PD), 2=switch to two-parameter continuation (LP, BP, HB, TR), 3=switch to three-parameter continuation (BP)
+                 ITNW=17, NWTN=13, NMX=100, NPR=1, #Not sure if needed: PAR=autobifpar,
+                 DS=direction*1e-13, DSMAX=1e-13,
                  UZSTOP= {'I':350.0}
                  )
 pdb.set_trace()
-
-
 
 
 
