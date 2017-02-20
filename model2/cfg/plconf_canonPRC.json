@@ -1,0 +1,10 @@
+{
+  "fontsize": 8,
+  "figsize":  [40,4],
+  "formats":  ["svg"],
+  "color":    "black",
+  "figfile":  "plconf_canonPRC",
+  "modfile":  "tmstoch.json",
+  "contfile": "cont_I.shv",
+  "workdir":  "/pj/channelprcs/sim"
+}

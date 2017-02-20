@@ -1,8 +1,0 @@
-NDIM=   9, IPS =   4, IRS =   0, ILP =   0
-ICP =  ['period']
-NTST=  200, NCOL=   4, IAD =   3, ISP =   1, ISW = 1, IPLT= 0, NBC= 10, NINT= 3
-NMX=  2, NPR=  100, MXBF=   2, IID =   3, ITMX= 10, ITNW= 7, NWTN= 3, JAC= 0
-EPSL= 1e-08, EPSU = 1e-08, EPSS = 1e-5
-DS  =  1e-5, DSMIN= 1e-18, DSMAX=  1e-2, IADS=   1
-NPAR = 36, THL =  {11: 0.0}, THU = {}
-UZSTOP = {}, A1 = 1e20

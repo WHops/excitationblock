@@ -1,0 +1,83 @@
+{
+  "source": "Benda: Dissertation (2002)",
+  "par": 
+  {
+    "c":      "1.0 * uF/cm2",
+    "A":      "300 * um2",
+    "A_old":      "250 * um2",
+    "I":      "0 * uA/cm2", 
+    "EL":     "-67 * mV",
+    "EK":     "-82 * mV", 
+    "ENa":    "48 * mV", 
+    "gNa":    "100 * msiemens/cm2",
+    "gNap":   "0.0 * msiemens/cm2",
+    "gL":     "0.1 * msiemens/cm2",
+    "gK":     "200 * msiemens/cm2",
+    "uNa":    "20 * psiemens",
+    "uKdr":   "20 * psiemens",
+    "uNap":   "10 * psiemens",
+    "DNa":    "5 / um2",
+    "DKdr":   "10 / um2",
+    "DNap":   "2 / um2",
+    "NKdrETM":"2000",
+    "NNaETM": "2000",
+    "NNap":   "2000",
+    "tauNap": "0.8 * ms",
+    "T":      "296.13 * kelvin",
+    "T_NaETM": "296.13 * kelvin",
+    "Qg_NaETM": "1.2",
+    "Q_NaETMa": "3.0",
+    "Q_NaETMi": "3.0",
+    "T_KdrETM": "296.13 * kelvin",
+    "Qg_KdrETM": "1.2",
+    "Q_KdrETMa": "3.0"
+  }, 
+  "current_balance_eq": "c*dv/dt + IL + IK + INa + INap - I",
+  "currents":
+  {
+    "IL" : "gL*(v-EL)",
+    "INa_tmp": "gNa*(NaETMa**3*NaETMi + NaETM1 + NaETM2 + NaETM3 + NaETM4 + NaETM5 + NaETM6 + NaETM7)*(v-ENa)",
+    "IK_tmp" : "gK*(KdrETMa**4)*(v-EK)",
+    "INa": "uNa*DNa*(NaETMa**3*NaETMi)*(v-ENa)",
+    "IK" : "uKdr*DKdr*(KdrETMa**4 + KdrETM1 + KdrETM2 + KdrETM3 + KdrETM4)*(v-EK)",
+    "INap":"uNap*DNap*(Nap**3 + Nap1 + Nap2 + Nap3)*(v-ENa)"
+  },
+  "aux_odes":
+  {
+    "NaETMa":"(NaETMainf-NaETMa)/tauNaETMa : 1",
+    "NaETMi":"(NaETMiinf-NaETMi)/tauNaETMi : 1",
+    "KdrETMa":"(KdrETMainf-KdrETMa)/tauKdrETMa : 1",
+    "KdrETM1":"-KdrETM1/tauKdrETMa+xi_KdrETM1*sqrt(8*KdrETMainf**7*(1-KdrETMainf)/tauKdrETMa/(DKdr*A)) : 1",
+    "KdrETM2":"-2*KdrETM2/tauKdrETMa+xi_KdrETM2*sqrt(24*KdrETMainf**6*(1-KdrETMainf)**2/tauKdrETMa/(DKdr*A)) : 1",
+    "KdrETM3":"-3*KdrETM3/tauKdrETMa+xi_KdrETM3*sqrt(24*KdrETMainf**5*(1-KdrETMainf)**3/tauKdrETMa/(DKdr*A)) : 1",
+    "KdrETM4":"-4*KdrETM4/tauKdrETMa+xi_KdrETM4*sqrt(8*KdrETMainf**4*(1-KdrETMainf)**4/tauKdrETMa/(DKdr*A)) : 1",
+    "Nap": "(Napinf-Nap)/tauNap : 1",
+    "Nap1": "-Nap1/tauNap + sqrt(2/tauNap*3*(1-Napinf)*Napinf**2/(DNap*A))*xi_Nap1 : 1",
+    "Nap2": "-2*Nap2/tauNap + sqrt(4/tauNap*3*(1-Napinf)**2*Napinf/(DNap*A))*xi_Nap2 : 1",
+    "Nap3": "-3*Nap3/tauNap + sqrt(6/tauNap*(1-Napinf)**3/(DNap*A))*xi_Nap3 : 1"
+  },
+  "aux_odes_tmp":
+  {
+  },
+  "fun":
+  {
+    "aNaETMa": "0.32*(v/mV+54)/(1-exp(-(v/mV+54)/4))",
+    "bNaETMa": "0.28*(v/mV+27)/(exp((v/mV+27)/4)-1)",
+    "NaETMainf": "-(0.32*v/mV+17.28)*(exp(v/mV/4+27/4)-1)/((0.28*v/mV+7.56)*(exp(-v/mV/4-27/2)-1)-(0.32*v/mV+17.28)*(exp(v/mV/4+27/4)-1))",
+    "tauNaETMa": "(exp(-v/mV/4-27/2)-1)*(exp(v/mV/4+27/4)-1)/((0.28*v/mV+7.56)*(exp(-v/mV/4-27/2)-1)-(0.32*v/mV+17.28)*(exp(v/mV/4+27/4)-1)) *ms/q_NaETMi",
+    "aNaETMi": "1.128*exp(-(v/mV+50)/18)",
+    "bNaETMi": "4/(1+exp(-(v/mV+27)/5))",
+    "NaETMiinf": "(0.128*exp(v/mV/5+27/5)+0.128)/(0.128*exp(v/mV/5+27/5)+4.0*exp(23*v/mV/90+368/45)+0.128)",
+    "tauNaETMi": "(exp(-v/mV/5-27/5)+1)/(0.128*(exp(-v/mV/5-27/5)+1)*exp(-v/mV/18-25/9)+4) * ms / q_NaETMi",
+    "q_gNaETM":"Qg_NaETM**((T-T_NaETM)/(10*kelvin))",
+    "q_NaETMa":"Q_NaETMa**((T-T_NaETM)/(10*kelvin))",
+    "q_NaETMi":"Q_NaETMi**((T-T_NaETM)/(10*kelvin))",
+    "aKdrETMa": "0.032*(v/mV+52)/(1-exp(-(v/mV+52)/5))",
+    "bKdrETMa": "0.5*exp(-(v/mV+57)/40)",
+    "KdrETMainf": "(0.032*v/mV + 1.664)/(0.032*v/mV-0.5*(exp(-v/mV/5-52/5)-1)*exp(-v/mV/40-57/40)+1.664)",
+    "tauKdrETMa": "(-exp(-v/mV/5-52/5)+1)/(0.032*v/mV-0.5*(exp(-v/mV/5-52/5)-1)*exp(-v/mV/40-57/40)+1.664) * ms / q_KdrETMa",
+    "q_KdrETMa": "Q_KdrETMa**((T-T_KdrETM)/(10*kelvin))",
+    "qg_KdrETM": "Qg_KdrETM**((T-T_KdrETM)/(10*kelvin))",
+    "Napinf" : "1./(1+exp((-20-v/mV)/15.)) : 1"
+  }
+}

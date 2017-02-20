@@ -1,0 +1,81 @@
+\NeedsTeXFormat{LaTeX2e}
+\documentclass[11pt]{article}
+\bibliographystyle{unsrt}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{fancybox}
+\usepackage{listings}
+%\usepackage{algo}
+\usepackage{url}
+\usepackage{cite}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6in}
+\setlength{\oddsidemargin}{.25in}
+\setlength{\topmargin}{-.5in}  % changed from -.25 by RSR on 1/21/07
+%\parindent .5in    % commented out by RSR 1/21/07
+
+%put words in the hyphenation statement if you want to enforce
+%how LaTeX should break them (or not) at the end of a line.
+%\hyphenation{repre-sen-tations problems exact linear}
+\hyphenation{itself}
+
+%%%%%
+%% Commented out -- RSR, 1/21/07
+%%%%%
+% The following provides a box to surround the thesis statement
+%\newenvironment{Thesis}%
+%{\begin{Sbox}\begin{minipage}{.95\linewidth}}%
+%{\end{minipage}\end{Sbox}\begin{center}\fbox{\TheSbox}\end{center}}
+
+\title{Temperature dependent depolarization blocking in neurons}
+
+\author{Wolfram H\"ops \\ \\Supervisors:  Jan-Hendrik Schleimer, Prof. Dr. Susanne Schreiber}
+\begin{document}
+
+% You can specify a language and other options for
+% the code-formatting "listings" package
+%\lstset{language=C++,basicstyle=\small,
+%        stringstyle=\ttfamily,showstringspaces=false}
+
+\singlespace
+\maketitle
+
+\begin{abstract}                % ~350 words max
+
+Cooling is a way to reversibly silence neurons. Although the effect is thought to be related to a temperature induced shift of the so-called \textit{excitation block}, the overall mechanism is not yet well understood. In the proposed short study, we will try to analytically examine which ion channel properties contribute to the addressed phenomenon and how the onset of the exciation block is shifted by temperature in different channel configurations. The study will mostly rely on the Wang-Buzsaki neuron model and the method of numerical continuation for bifurcation analyses.  
+\end{abstract}
+
+
+\doublespace
+% This sets section-numbering to only include Section and Subsection numbers
+\setcounter{secnumdepth}{2}
+
+\section{Introduction}\label{ch:overview}
+
+Cooling is a way to reversibly deactivate brain areas \textit{in vitro} and \textit{in vivo} \cite{Lomber1999}. At the same time, studies have shown that mild hypothermia can even enhance neuronal excitability, before neurons are silenced upon further cooling below 10 to 15 $\,^{\circ}{\rm C}$. The effect has been observed in CA3 pyramidal cells of guinea pigs \cite{Aihara2001}, cat spinal motoneurones \cite{Klee1974, Michalski1993a} and slices of rat visual cortex \cite{Volgushev2000}. Volgushev et al. \cite{Volgushev2000} have argued that silencing was likely caused by a cold-induced shift in the total $K^{+}/Na^{+}$ conductance ratio, leading cells from a hyperexcitable state in a depolarization block. Although this block is a well-known phenomenon (see e.g. \cite{Bianchi2012}), its temperature dependence has not been studied extensively before. It remains unclear how exactly the excitation block relates to temperature and what the implications for temperature dependence on the level of ion channels are. 
+
+The aim of the proposed study is to analytically describe the effect of temperature changes on the excitation block and to help a better understanding of neuronal behaviour in a hypothermic environment in general.    
+
+%A similar effect was 
+
+%Spiking is affected by temperature (cite)
+%Excitation block changes (cite)
+%Potassium/Sodium conductance changes \cite{Volgushev2000}
+%Membrane potential decreases linearly with rising temperature (Vol)
+%Onset threshold decreases as well (Vol)
+%On cooling, cat spinal motoneurones cells pass a depolarized, hyperexcitable state 10° (Klee et al. %(1974)) in , before being silenced below 10°C (Michalski et al. 1993). [taken from volgushev]
+
+%Volgushev ohne beleg (?!): Mechanism of silencing by cooling is depol block. 
+\newpage
+\section{Work of this study}
+
+%In the proposed short study, we will attempt to characterize analytically how the neuronal excitation block is affected by temperature. 
+The project will rely on the Wang-Buzsaki neuron model \cite{Wang6402} and the software \textit{AUTO} \cite{Doedel1981} for numerical continuation of bifurcation problems. We will use different implementations of temperature dependency to investigate how the excitation block evolves over a range of channel configurations. A spike-blocking Hopf bifurcation \cite{Hesse2016} will serve as a marker for the event.
+
+For a first approximation, we will use the membrane capacity as a basic indicator of temperature and see how it affects the boundary of excitation blocking. Afterwards, the neuron model will be carefully extended to account for temperature in a more realistic way, considering temperature dependence of peak channel conductances, changes in the equilibrium potential and, as needed, modifications in the channel opening and closing rates. It will be of particluar interest if the shift in the ratio of sodium and potassium conductance, as observed by Volgushev et al. {\cite{Volgushev2000}}, can indeed explain hypothermic inactivation. 
+
+\bibliography{/home/wulf/Uni/CNS/3.Semester/library/library}
+\bibliographystyle{apalike}
+\end{document}

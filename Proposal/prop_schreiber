@@ -1,0 +1,59 @@
+\NeedsTeXFormat{LaTeX2e}
+\documentclass[11pt]{article}
+\bibliographystyle{unsrt}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{fancybox}
+\usepackage{listings}
+\usepackage{algo}
+\usepackage{url}
+\usepackage{cite}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6in}
+\setlength{\oddsidemargin}{.25in}
+\setlength{\topmargin}{-.5in}  % changed from -.25 by RSR on 1/21/07
+%\parindent .5in    % commented out by RSR 1/21/07
+
+%put words in the hyphenation statement if you want to enforce
+%how LaTeX should break them (or not) at the end of a line.
+%\hyphenation{repre-sen-tations problems exact linear}
+\hyphenation{itself}
+
+%%%%%
+%% Commented out -- RSR, 1/21/07
+%%%%%
+% The following provides a box to surround the thesis statement
+%\newenvironment{Thesis}%
+%{\begin{Sbox}\begin{minipage}{.95\linewidth}}%
+%{\end{minipage}\end{Sbox}\begin{center}\fbox{\TheSbox}\end{center}}
+
+\title{Exploring Inverse Encoding Models for decoding of visual information from fMRI data }
+
+\author{Wolfram H\"ops \\ Supervisors:  Kai G\"orgen, Prof. Dr. John-Dylan Haynes}
+\begin{document}
+
+% You can specify a language and other options for
+% the code-formatting "listings" package
+\lstset{language=C++,basicstyle=\small,
+        stringstyle=\ttfamily,showstringspaces=false}
+
+\singlespace
+\maketitle
+
+\begin{abstract}                % ~350 words max
+
+\end{abstract}
+
+
+\doublespace
+% This sets section-numbering to only include Section and Subsection numbers
+\setcounter{secnumdepth}{2}
+
+\section{Introduction}\label{ch:overview}
+
+\section{Work of this study}
+
+\bibliography{bibliothek.bib}
+\end{document}

@@ -1,0 +1,44 @@
+{
+  "aux_odes": {
+    "h" : "5*(hInf -h)/hTau : 1",
+    "n" : "5*(nInf-n)/nTau : 1",
+    "Kdr1":"-Kdr1/nTau+xi_Kdr1*sqrt(8*nInf**7*(1-nInf)/nTau/(NKdr)) : 1",
+    "Kdr2":"-2*Kdr2/nTau+xi_Kdr2*sqrt(24*nInf**6*(1-nInf)**2/nTau/(NKdr)) : 1",
+    "Kdr3":"-3*Kdr3/nTau+xi_Kdr3*sqrt(24*nInf**5*(1-nInf)**3/nTau/(NKdr)) : 1",
+    "Kdr4":"-4*Kdr4/nTau+xi_Kdr4*sqrt(8*nInf**4*(1-nInf)**4/nTau/(NKdr)) : 1",
+    "Nap": "(Napinf-Nap)/tauNap : 1",
+    "Nap1": "-Nap1/tauNap + sqrt(2/tauNap*3*(1-Napinf)*Napinf**2/(NNap))*xi_Nap1 : 1",
+    "Nap2": "-2*Nap2/tauNap + sqrt(4/tauNap*3*(1-Napinf)**2*Napinf/(NNap))*xi_Nap2 : 1",
+    "Nap3": "-3*Nap3/tauNap + sqrt(6/tauNap*(1-Napinf)**3/(NNap))*xi_Nap3 : 1"
+  },
+  "current_balance_eq": "Cm*dv/dt + INa + IK + IL + INap - I",
+  "currents": {
+    "IK"   : "gK*(n**4+Kdr1+Kdr2+Kdr3+Kdr4)*(v-EK)",
+    "IL"   : "gL*(v-EL)",
+    "INa"  : "gNa*mInf**3 * h*(v-ENa)",
+    "INap" : "gNap*(Nap**3 + Nap1 + Nap2 + Nap3)*(v-ENa)"
+  },
+  "fun": {
+    "hInf" : "(0.07*exp(-(v/mV+58)/20)) / (0.07*exp(-(v/mV+58)/20) + 1./( 1 + exp(-0.1*(v/mV+28)) ))",
+    "mInf" : "-0.1*(v/mV+35)/ ( exp(-0.1*(v/mV+35)) - 1 ) / (-0.1*(v/mV+35)/ ( exp(-0.1*(v/mV+35)) - 1 ) + 4* exp(-(v/mV+60)/18))",
+    "nInf" : "(-0.01*(v/mV+34)/( exp(-0.1*(v/mV+34)) - 1)) / (-0.01*(v/mV+34)/ (exp(-0.1*(v/mV+34)) - 1) + 0.125* exp(-(v/mV+44)/80))",
+    "nTau" : "1./(-0.01*(v/mV+34)/ ( exp(-0.1*(v/mV+34)) - 1 ) + 0.125* exp(-(v/mV+44)/80) )*ms",
+    "hTau" : "1./(0.07 * exp(-(v/mV+58)/20) + 1/( 1 + exp(-0.1*(v/mV+28)) ))*ms",
+    "Napinf" : "1./(1+exp((-20-v/mV)/15.)) : 1"
+  },
+  "par": {
+    "Cm": "1 * ufarad/cm**2",
+    "EK": "-90 * mV",
+    "EL": "-65 * mV",
+    "ENa": "55 * mV",
+    "I": "0 * uA/cm2",
+    "gK": "9 * msiemens/cm**2",
+    "gL": "0.1 * msiemens/cm**2",
+    "gNa": "35 * msiemens/cm**2",
+    "gNap": "10 * psiemens/um2",
+    "NNap": "100",
+    "NNa" : "3000",
+    "NK"  : "1000",
+    "tauNap": "0.8 * ms"
+  }
+}

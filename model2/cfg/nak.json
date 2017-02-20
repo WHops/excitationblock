@@ -1,0 +1,46 @@
+{
+  "current_balance_eq": "c*dv/dt + INa + IK + IL - I",
+  "aux_odes": 
+  {
+    "n": "(ninf-n)/taun : 1"
+  },
+  "aux_odes_units": 
+  {
+    "n": 1
+  },
+  "currents": 
+  {
+    "INa": "qgNa*gNa*minf*(v-ENa*T/Tbase)",
+    "IK":  "qgK*gK*(n)*(v-EK*T/Tbase)",
+    "IL":  "qgL*gL*(v-EL*T/Tbase)"
+  },
+  "par": 
+  {
+    "c"   : "1 * ufarad/cm2",
+    "gL"  : "8 * msiemens/cm2",
+    "gNa" : "20 * msiemens/cm2",
+    "gK"  : "10 * msiemens/cm2",
+    "EL"  : "-80 * mV",
+    "ENa" : "60 * mV",
+    "EK"  : "-90 * mV",
+    "I"   : "0 * uA/cm**2",
+    "NNa" : 1000,
+    "NK"  : 50,
+    "T"   : "295.15 * kelvin",
+    "Tbase": "295.15 * kelvin",
+    "Qn": 3.0,
+    "QgL": 1.25,
+    "QgNa": 1.25,
+    "QgK": 1.25
+  },
+  "fun": 
+  {
+    "taun" : "0.5*ms/qn : second",
+    "ninf" : "1./(1+exp((-25-v/mV)/5.)) : 1",
+    "minf" : "1./(1+exp((-20-v/mV)/15.)) : 1",
+    "qgNa" : "QgNa**((T-Tbase)/(10*kelvin)) : 1",
+    "qgK"  : "QgK**((T-Tbase)/(10*kelvin)) : 1",
+    "qgL"  : "QgL**((T-Tbase)/(10*kelvin)) : 1",
+    "qn"   : "Qn**((T-Tbase)/(10*kelvin)) : 1"
+  }
+}

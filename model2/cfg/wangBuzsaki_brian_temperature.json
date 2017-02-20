@@ -1,0 +1,54 @@
+{
+    "aux_odes": {
+        "h": "phi*phi_h*(hAlpha(v) * (1-h) - hBeta(v)*h) : 1",
+        "n": "phi*phi_n*(nAlpha(v) * (1-n) - nBeta(v)*n) : 1"
+    },
+      "current_balance_eq": "Cm * dv/dt - INa - IK - IL - I - sig_noise*xi_noise" ,
+    "currents": {
+        "IK": " gK*n**4*(EK-v)",
+        "IL": " gL*(EL-v)",
+        "INa": " gNa*mInf(v)**3 * h*(ENa-v)"
+    },
+    "fun": {
+        "hAlpha(v)": "(0.07 * exp(-(v/mV+58)/20)/ms) * q_ah**((T/kelvin)/10)",
+        "hBeta(v)": "(1/( 1 + exp(-0.1*(v/mV+28)) )/ms) * q_bh**((T/kelvin)/10)",
+
+        "mAlpha(v)": "(-0.1*(v/mV+35)/ ( exp(-0.1*(v/mV+35)) - 1 )) * (q_am ** ((T/kelvin)/10))",
+
+        "mBeta(v)": "(4* exp(-(v/mV+60)/18)) * (q_bm ** ((T/kelvin)/10))",
+
+        "mInf(v)": "mAlpha(v) / (mAlpha(v) + mBeta(v))",
+
+        "nAlpha(v)": "(-0.01*(v/mV+34+bn)/ ( exp(-0.1*(v/mV+34+bn)) - 1 )/ms) * q_an**((T/kelvin)/10)",
+        "nBeta(v)": "(0.125* exp(-(v/mV+44+bn)/80)/ms) * q_bn**((T/kelvin)/10)"
+
+    },
+    "par": {
+        "Cm": "1 * ufarad/cm2",
+        "EK": "-90 * mV",
+        "EL": "-65 * mV",
+        "ENa": "55 * mV",
+        "I": "0.16008632717 * uA/cm2",
+        "T": "0 * kelvin",
+        "bn": 0,
+        "gK": "9 * msiemens/cm2",
+        "gL": "0.1 * msiemens/cm2",
+        "gNa": "35 * msiemens/cm2",
+        "phi": 1,
+        "phi_h": 5,
+        "phi_n": 5,
+        "sig_noise": ".1 * uA/cm2*ms**(1/2)",
+        "Iadd": "0 * uA/cm2",
+
+        "q_ah"  : 2.0,
+        "q_bh"  : 2.0,
+        "q_an"  : 2.0,
+        "q_bn"  : 2.0,
+        "q_am"  : 2.0,
+        "q_bm"  : 2.0,
+
+        "q_gk"  : 1.2,
+        "q_gna" : 1.2,
+        "q_gl"  : 1.2
+    }
+}

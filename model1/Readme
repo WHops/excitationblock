@@ -1,0 +1,6 @@
+This is the result of model0. 
+
+We are still just changing Cm. There was apparently an issue with units. 
+I changed the unit-conversion step in the end of the brian stimulation.
+
+It works now, although it is a bit dirty.

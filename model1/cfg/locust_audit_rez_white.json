@@ -1,0 +1,161 @@
+{
+  "current_balance_eq": "c*dv/dt + INa + IK + IM + IL + IR - I",
+  "aux_odes": 
+  {
+    "m": "am*(1-m) - bm*m : 1",
+    "h": "ah*(1-h) - bh*h : 1",
+    "n": "an*(1-n) - bn*n : 1",
+    "w": "(winf-w)/tauw : 1",
+    "z": "(zinf-z)/(2*taur) : 1", 
+    "x": "y : meter",
+    "y": "sqrt(a*kB*T/taud/B)*xi_ty -2/taud*y - wtymp**2*x : meter/second"
+  },
+  "aux_odes_units": 
+  {
+    "m": 1,
+    "h": 1,
+    "n": 1,
+    "w": 1,
+    "z": 1,
+    "x": "umeter",
+    "y": "umeter/ms"
+  },
+  "currents": 
+  {
+    "INa": "qgNa*gNa*pNa*(v-ENa)",
+    "IK":  "qgK*gK*pK*(v-EK)",
+    "IM":  "qgM*gM*pM*(v-EM)", 
+    "IR":  "qgR*gR*pR*(v-ER)", 
+    "IL":  "qgL*gL*(v-EL)"
+  },
+  "diffu":
+  {
+    "y": ["a*20*10**(Idb/20)","sqrt(4*a*kB*T/(taud*B))"]
+  },
+  "ode": ["(I + gNa*qgNa(T)*m_bd/NNa*(ENa*T/Tbase-v) + gK*qgK(T)*n_e/NK*(EK*T/Tbase-v) + gL*qgL(T)*(EL*T/Tbase-v) + gM*qgM(T)*w_c/NM*(EM*T/Tbase-v))/c"],
+  "var": ["v"],
+  "tympvar": ["x","y"],
+  "fun": 
+  {
+    "am":   "0.32*(v/mV+54)/(1-exp(-(v/mV+54)/4)) * qm / ms : second**-1",
+    "bm":   "0.28*(v/mV+27)/(exp((v/mV+27)/5)-1) * qm / ms : second**-1",
+    "ah":   ".2*0.128*exp(-(v/mV+50)/18) * qh / ms : second**-1",
+    "bh":   "4/(1+exp(-(v/mV+27)/5)) * qh / ms : second**-1",
+    "an":   "0.032*(v/mV+52)/(1-exp(-(v/mV+52)/5)) * qn / ms : second**-1",
+    "bn":   "0.5*exp(-(v/mV+57)/40) * qn / ms : second**-1",
+    "winf": "1/(1+exp(-(v/mV+20)/5)) : 1",
+    "tauw": "100/qw * ms : second",
+    "taur": "1.90982680541/qR * ms : second",
+    "zinf": "1/(1+exp(-ks*(x-xbase)/(kB*T))) + 1/(1+exp(ks*(x+xbase)/(kB*T))) : 1",
+    "qgNa": "QgNa**((T-Tbase)/(10*kelvin)) : 1",
+    "qgK":  "QgK**((T-Tbase)/(10*kelvin)) : 1",
+    "qgL":  "QgL**((T-Tbase)/(10*kelvin)) : 1",
+    "qgM":  "QgM**((T-Tbase)/(10*kelvin)) : 1",
+    "qgR":  "QgR**((T-Tbase)/(10*kelvin)) : 1",
+    "qm":   "Qm**((T-Tbase)/(10*kelvin)) : 1",
+    "qh":   "Qh**((T-Tbase)/(10*kelvin)) : 1",
+    "qn":   "Qn**((T-Tbase)/(10*kelvin)) : 1",
+    "qw":   "Qw**((T-Tbase)/(10*kelvin)) : 1",
+    "qR":   "QR**((T-Tbase)/(10*kelvin)) : 1"
+  },
+  "fun_units": 
+  {
+    "am": "ms**-1",
+    "bm": "ms**-1",
+    "ah": "ms**-1",
+    "bh": "ms**-1",
+    "an": "ms**-1",
+    "bn": "ms**-1",
+    "winf": 1,
+    "tauw": "ms",
+    "taur": "ms",
+    "zinf": 1,
+    "qgNa": 1,
+    "qgK":  1,
+    "qgL":  1,
+    "qgM":  1,
+    "qgR":  1,
+    "qm":   1,
+    "qh":   1,
+    "qn":   1,
+    "qw":   1,
+    "qR":   1
+  },
+  "par": 
+  {
+    "Idb":   3,
+    "I":     "-0.1 * uA*cm**-2",
+    "c":     "1 * ufarad*cm**-2",
+    "gNa":   "2000 * msiemens*cm**-2",
+    "ENa":   "50 * mV",
+    "gK":    "1600 * msiemens*cm**-2",
+    "EK":    "-100 * mV",
+    "gL":    "2 * msiemens*cm**-2",
+    "EL":    "-67 * mV",
+    "gM":    "5 * msiemens*cm**-2",
+    "EM":    "-100 * mV",
+    "T":     "295.15 * kelvin",
+    "Tbase": "295.15 * kelvin",
+    "NNa":   "12000",
+    "NK":    "12000",
+    "NM":    "1000",
+    "NR":    "60",
+    "QgNa":  "1.2",
+    "QgK":   "2.4",
+    "QgL":   "1.2",
+    "QgM":   "1.2",
+    "Qm":    "2.8",
+    "Qh":    "2.0",
+    "Qn":    "1.5",
+    "Qw":    "2.0",
+    "wtymp": "25.132741 * radian*ms**-1",
+    "taud":  "0.1 * ms",
+    "kB":    "13.8 * umeter**2*fgram/(ms**2*kelvin)",
+    "ks":    "101826.75 * umeter*fgram/ms**2",
+    "a":     "0.003 * umeter**2/fgram",
+    "xbase": "0.12 * umeter",
+    "ER":    "0 * mV",
+    "gR":    "0.35 * msiemens*cm**-2",
+    "B":     ".1 * mmeter**2",
+    "QgR":   "1.1",
+    "QR":    "1.78947368421",
+    "taus":  "0.1 * ms"
+  },
+  "par_units": 
+  {
+    "wtymp_unit": "radian*kHz",
+    "taud_unit": "ms",
+    "taur_unit": "ms",
+    "kB_unit": "micrometer**2*(femto*gram)/(ms**2*K)",
+    "ks_unit": "micrometer*(femto*gram)/ms**2",
+    "a_unit": "micrometer**2/(femto*gram)",
+    "xbase_unit": "micrometer",
+    "T_unit": "K",
+    "B_unit": "micrometer",
+    "s_unit": "micro*Pa"
+  },
+  "infostr": "Karin Fisch Dissertation (2011, pp. 29) and Fisch et al. (2012). A modification to supress the double spikes was to slowdown the opening rate of the inactivation gate h. Also the number of receptor adaptation channels was increased.",
+  "ionchannels":
+  {
+    "K": 
+    {
+      "markov_model": "digraph K { n_a -> n_b [label=\"4*an\"]; n_b -> n_c [label=\"3*an\"]; n_c -> n_d [label=\"2*an\"]; n_d -> n_e [label=\"an\"]; n_e -> n_d [label=\"4*bn\"]; n_d -> n_c [label=\"3*bn\"]; n_c -> n_b [label=\"2*bn\"]; n_b -> n_a [label=\"bn\"]; }",
+      "open_state": "n_e"
+    },
+    "Na": 
+    {
+      "markov_model": "digraph Na{ m_aa -> m_ab [label=\"3*am\"]; m_ab -> m_ac [label=\"2*am\"]; m_ac -> m_ad [label=\"am\"]; m_ad -> m_ac [label=\"3*bm\"]; m_ac -> m_ab [label=\"2*bm\"]; m_ab -> m_aa [label=\"bm\"]; m_ba -> m_bb [label=\"3*am\"]; m_bb -> m_bc [label=\"2*am\"]; m_bc -> m_bd [label=\"am\"]; m_bd -> m_bc [label=\"3*bm\"]; m_bc -> m_bb [label=\"2*bm\"]; m_bb -> m_ba [label=\"bm\"]; m_aa -> m_ba [label=\"ah\"]; m_ba -> m_aa [label=\"bh\"]; m_ab -> m_bb [label=\"ah\"]; m_bb -> m_ab [label=\"bh\"]; m_ac -> m_bc [label=\"ah\"]; m_bc -> m_ac [label=\"bh\"]; m_ad -> m_bd [label=\"ah\"]; m_bd -> m_ad [label=\"bh\"]; }",
+      "open_state": "m_bd"
+    },
+    "M": 
+    {
+      "markov_model": "digraph M { w_c -> w_o [label=\"winf/tauw\"]; w_o -> w_c [label=\"(1-winf)/tauw\"]; }",
+      "open_state": "w_o"
+    },
+    "R": 
+    {
+      "markov_model": "digraph R { z_c -> z_o [label=\"zinf/taur\"]; z_o -> z_c [label=\"(1-zinf)/taur\"]; }",
+      "open_state": "z_o"
+    }
+  }
+}

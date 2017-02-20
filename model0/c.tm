@@ -1,0 +1,8 @@
+NDIM=   3, IPS =   1, IRS =   0, ILP =   0
+ICP =  {'I': 0.0, 'Cm': 1}
+NTST=  20, NCOL=   4, IAD =   3, ISP =   1, ISW = 1, IPLT= 0, NBC= 4, NINT= 0
+NMX=  100, NPR=  100, MXBF=  10, IID =   2, ITMX= 8, ITNW= 5, NWTN= 3, JAC= 0
+EPSL= 1e-06, EPSU = 1e-06, EPSS =0.0001
+DS  =  0.01, DSMIN= 0.001, DSMAX=  0.05, IADS=   1
+NPAR=   3, THL =  {11: 0.0}, THU =  {}
+UZSTOP=  {}

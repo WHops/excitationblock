@@ -1,0 +1,41 @@
+{
+  "par": {
+    "Cm": 1, 
+    "gL": 0.1, 
+    "gNa": 35, 
+    "gK": 9, 
+    "ENa": 55, 
+    "EL": -65, 
+    "EK": -90, 
+    "bn": 0, 
+    "phi": 1,
+    "phi_h": 5, 
+    "phi_n": 5, 
+    "I": 0
+  }, 
+  "simpar": {
+  }, 
+  "jac": [
+  ], 
+  "fun": {
+    "mInf(v)": "-0.1*(v+35)/ ( exp(-0.1*(v+35)) - 1 ) / (-0.1*(v+35)/ ( exp(-0.1*(v+35)) - 1 ) + 4* exp(-(v+60)/18))",
+    "hAlpha(v)": "0.07 * exp(-(v+58)/20)",
+    "hBeta(v)": "1/( 1 + exp(-0.1*(v+28)) )",
+    "nAlpha(v)": "-0.01*(v+34+bn)/ ( exp(-0.1*(v+34+bn)) - 1 )",
+    "nBeta(v)": "0.125* exp(-(v+44+bn)/80)"
+  }, 
+  "adlinsys": [
+  ], 
+  "var": [
+    "v", 
+    "h", 
+    "n"
+  ], 
+  "adlinvar": [
+  ], 
+  "ode": [
+    "(I + gL*(EL-v) + gNa*mInf(v)**3 * h*(ENa-v) + gK*n**4*(EK-v))/Cm", 
+    "phi*phi_h*(hAlpha(v) * (1-h) - hBeta(v)*h)",
+    "phi*phi_n*(nAlpha(v) * (1-n) - nBeta(v)*n)"
+  ]
+}

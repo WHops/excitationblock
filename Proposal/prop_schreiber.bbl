@@ -1,0 +1,58 @@
+\begin{thebibliography}{1}
+
+\bibitem{Lomber1999}
+Stephen~G. Lomber, Bertram~R. Payne, and James~A. Horel.
+\newblock {The cryoloop: An adaptable reversible cooling deactivation method
+  for behavioral or electrophysiological assessment of neural function}, 1999.
+
+\bibitem{Aihara2001}
+Hideo Aihara, Yasuhiro Okada, and Norihiko Tamaki.
+\newblock {The effects of cooling and rewarming on the neuronal activity of
+  pyramidal neurons in guinea pig hippocampal slices}.
+\newblock {\em Brain Research}, 893(1):36--45, 2001.
+
+\bibitem{Klee1974}
+M~R Klee, F~K Pierau, and D~S Faber.
+\newblock {Temperature effects on resting potential and spike parameters of cat
+  motoneurons.}
+\newblock {\em Experimental brain research}, 19(5):478--492, mar 1974.
+
+\bibitem{Michalski1993a}
+A~Michalski, B~M Wimborne, and G~H Henry.
+\newblock {The effect of reversible cooling of cat's primary visual cortex on
+  the responses of area 21a neurons}.
+\newblock {\em J Physiol}, 466:133--56., 1993.
+
+\bibitem{Volgushev2000}
+M~Volgushev, T~R Vidyasagar, M~Chistiakova, T~Yousef, and U~T Eysel.
+\newblock {Membrane properties and spike generation in rat visual cortical
+  cells during reversible cooling.}
+\newblock {\em The Journal of physiology}, 522 Pt 1:59--76, 2000.
+
+\bibitem{Bianchi2012}
+Daniela Bianchi, Addolorata Marasco, Alessandro Limongiello, Cristina
+  Marchetti, Helene Marie, Brunello Tirozzi, and Michele Migliore.
+\newblock {On the mechanisms underlying the depolarization block in the spiking
+  dynamics of CA1 pyramidal neurons.}
+\newblock {\em Journal of computational neuroscience}, 33(2):207--225, oct
+  2012.
+
+\bibitem{Wang6402}
+Xiao-Jing Wang and Gy{\"{o}}rgy Buzs{\'{a}}ki.
+\newblock {Gamma Oscillation by Synaptic Inhibition in a Hippocampal
+  Interneuronal Network Model}.
+\newblock {\em Journal of Neuroscience}, 16(20):6402--6413, 1996.
+
+\bibitem{Doedel1981}
+Eusebius~J Doedel.
+\newblock {AUTO: A program for the automatic bifurcation analysis of autonomous
+  systems}, 1981.
+
+\bibitem{Hesse2016}
+Janina Hesse, Jan-Hendrik Schleimer, and Susanne Schreiber.
+\newblock {Saddle-node loop bifurcations ubiquitously occur in
+  conductance-based model neurons and promote spike-based coding and
+  synchronization}.
+\newblock {\em arXiv}, 2016.
+
+\end{thebibliography}

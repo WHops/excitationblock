@@ -1,0 +1,6 @@
+Here, we will try a more realistic temperature implementation. 
+
+For the moment, this cares about g_na and g_k peak conductances. 
+Maybe I will add the temp dependency of E_q as well afterwards.
+
+I got some parameters from Susanne (see paper "Modell: Wang Buzsaki (simple)").

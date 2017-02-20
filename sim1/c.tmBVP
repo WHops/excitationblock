@@ -1,9 +1,0 @@
-NDIM=  22, IPS =   4, IRS =   0, ILP =   0
-ICP =  {'I': 0.0015288664395, 'lam': 0, 'dotZF': 0.96567415853064398, 'period': 0.14998867815, 'Cm': 0.01}
-NTST= 200, NCOL=   4, IAD =   3, ISP =   1, ISW = 1, IPLT= 0, NBC=23, NINT= 1
-NMX=    2, NPR=  100, MXBF=   2, IID =   3, ITMX=10, ITNW= 7, NWTN= 3, JAC= 0
-EPSL= 1e-08, EPSU = 1e-08, EPSS = 1e-05
-DS  = 1e-05, DSMIN= 1e-18, DSMAX=  0.01, IADS=   1
-NPAR=  36, THL =  {11: 0.0}, THU =  {}
-UZSTOP=  {}
-A1  = 1e+20
