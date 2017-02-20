@@ -13,7 +13,7 @@ int func (integer ndim, const double *u, const integer *icp, const double *par, 
 
 int stpnt (integer ndim, double t, double *u, double *par) {
   par[0]= 0.0;
-  par[1]= 0.0;
+  par[1]= 0.1;
   par[2]= 0.01;
   par[10]= 0;
   u[0]= 0;

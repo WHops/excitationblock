@@ -1,4 +1,4 @@
-def find_ini_brian(modelname, workdir, bifpar):
+def find_ini_brian(modelname, workdir, bifpar, automodelname):
 
     import pylab, brian2, brianutils, os, json, sympy, scipy, sys, \
         datetime, shelve, autoutils, contextlib
@@ -7,7 +7,7 @@ def find_ini_brian(modelname, workdir, bifpar):
     units= dict(brian2.units.__dict__.items()
                 + brian2.units.allunits.__dict__.items()
                 + brian2.__dict__.items())
-    unitlist=["mV","ms","cm2","uF","psiemens","um2","msiemens","cm"]
+    unitlist=["mV","ms","cm2","uF","psiemens","um2","msiemens","cm", "kelvin"]
     baseunits=[(k,float(eval(k,units).base)) for k in unitlist]
 
     p = {"simfile"  : "sim_DNap_2015-12-14_16:55:14.603625.shv",
@@ -15,11 +15,7 @@ def find_ini_brian(modelname, workdir, bifpar):
          "contfile" : "dat/cont_WB.json",   #This is what brian produces and hands to auto
          "workdir"  : os.getenv("HOME") + "/Uni/CNS/3.Semester/schreiberlab/excitationblock/" + workdir,
          "dt"       : "0.05*ms",
-         "bifpar"   : bifpar #{
-         #  "I" : ["0.0* uA/cm2"],
-         #  "Cm" : ["1.0*uF/cm2","1.1*uF/cm2","1.4*uF/cm2","1.41*uF/cm2","1.42*uF/cm2"],
-         #  "T" : ["0.0 * kelvin"]
-         #  }
+         "bifpar"   : bifpar
          }
 
     os.chdir(p["workdir"])
@@ -44,6 +40,7 @@ def find_ini_brian(modelname, workdir, bifpar):
     diffuterms=dict([(k[3:],(S(j).coeff(k)**2).subs(baseunits)) for i,j in sde.eq_expressions for k in sde.stochastic_variables if S(j).coeff(k)!=0])
 
     ## ADD PAR ##
+
     for j,k in p["bifpar"].items():
       ode += brian2.Equations("{} : {}".format(j,repr(eval(k[0],units).dim)))
 
@@ -69,7 +66,7 @@ def find_ini_brian(modelname, workdir, bifpar):
 
     ## CREATE ADJOINT LINEAR SYSTEM ##
 
-    baseunits2 = [('mV', 1), ('ms', 1), ('cm2', 1), ('uF', 1), ('psiemens', 1), ('um2', 1), ('msiemens', 1), ('cm', 1)]
+    baseunits2 = [('mV', 1), ('ms', 1), ('cm2', 1), ('uF', 1), ('psiemens', 1), ('um2', 1), ('msiemens', 1), ('cm', 1), ('kelvin', 1)]
     varrhs = [(i,sympy.S(j).subs(baseunits2))
                     for i,j in ode.eq_expressions]
 
@@ -93,13 +90,14 @@ def find_ini_brian(modelname, workdir, bifpar):
     if "A" in autobifpar:
         autobifpar.pop("A")
 
-    unames,pnames= autoutils.writeFP('tm_new',
+    unames,pnames= autoutils.writeFP(automodelname,
         bifpar=autobifpar, rhs=rhs, var=var,
         bc=['{0}_left-{0}_right'.format(v) for v in var] + spikecriterion,
         ic=[])
 
     inivals = ([float(getattr(states,j)[0][-1]) for j in var])
 
-    #convert first value (V) from V to mV.
+    #convert Voltage from V to mV.
     inivals[0] *= 1000
+
     return unames, pnames, inivals, autobifpar

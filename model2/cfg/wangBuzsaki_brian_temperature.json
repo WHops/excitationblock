@@ -5,31 +5,31 @@
     },
       "current_balance_eq": "Cm * dv/dt - INa - IK - IL - I - sig_noise*xi_noise" ,
     "currents": {
-        "IK": " gK*n**4*(EK-v)",
-        "IL": " gL*(EL-v)",
-        "INa": " gNa*mInf(v)**3 * h*(ENa-v)"
+        "IK": " (gK  * q_gk**((dT/kelvin)/10)) * n**4 * (EK(v)-v)",
+        "IL": " (gL  * q_gl**((dT/kelvin)/10)) * (EL(v)-v)",
+        "INa": "(gNa * q_gna**((dT/kelvin)/10)) * mInf(v)**3 * h * (ENa(v)-v)"
     },
     "fun": {
-        "hAlpha(v)": "(0.07 * exp(-(v/mV+58)/20)/ms) * q_ah**((T/kelvin)/10)",
-        "hBeta(v)": "(1/( 1 + exp(-0.1*(v/mV+28)) )/ms) * q_bh**((T/kelvin)/10)",
-
-        "mAlpha(v)": "(-0.1*(v/mV+35)/ ( exp(-0.1*(v/mV+35)) - 1 )) * (q_am ** ((T/kelvin)/10))",
-
-        "mBeta(v)": "(4* exp(-(v/mV+60)/18)) * (q_bm ** ((T/kelvin)/10))",
-
+        "hAlpha(v)": "(0.07 * exp(-(v/mV+58)/20)/ms) * q_ah**((dT/kelvin)/10)",
+        "hBeta(v)": "(1/( 1 + exp(-0.1*(v/mV+28)) )/ms) * q_bh**((dT/kelvin)/10)",
+        "mAlpha(v)": "(-0.1*(v/mV+35)/ ( exp(-0.1*(v/mV+35)) - 1 )) * (q_am ** ((dT/kelvin)/10))",
+        "mBeta(v)": "(4* exp(-(v/mV+60)/18)) * (q_bm ** ((dT/kelvin)/10))",
         "mInf(v)": "mAlpha(v) / (mAlpha(v) + mBeta(v))",
+        "nAlpha(v)": "(-0.01*(v/mV+34+bn)/ ( exp(-0.1*(v/mV+34+bn)) - 1 )/ms) * q_an**((dT/kelvin)/10)",
+        "nBeta(v)": "(0.125* exp(-(v/mV+44+bn)/80)/ms) * q_bn**((dT/kelvin)/10)",
 
-        "nAlpha(v)": "(-0.01*(v/mV+34+bn)/ ( exp(-0.1*(v/mV+34+bn)) - 1 )/ms) * q_an**((T/kelvin)/10)",
-        "nBeta(v)": "(0.125* exp(-(v/mV+44+bn)/80)/ms) * q_bn**((T/kelvin)/10)"
-
+        "EK(v)": "EK_ref * (1 + ((dT/kelvin)/(T_ref/kelvin)))",
+        "EL(v)": "EL_ref * (1 + ((dT/kelvin)/(T_ref/kelvin)))",
+        "ENa(v)": "ENa_ref * (1 + ((dT/kelvin)/(T_ref/kelvin)))"
     },
     "par": {
         "Cm": "1 * ufarad/cm2",
-        "EK": "-90 * mV",
-        "EL": "-65 * mV",
-        "ENa": "55 * mV",
+        "EK_ref": "-90 * mV",
+        "EL_ref": "-65 * mV",
+        "ENa_ref": "55 * mV",
         "I": "0.16008632717 * uA/cm2",
-        "T": "0 * kelvin",
+        "dT": "0.1 * kelvin",
+        "T_ref": "293 * kelvin",
         "bn": 0,
         "gK": "9 * msiemens/cm2",
         "gL": "0.1 * msiemens/cm2",
