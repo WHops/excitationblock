@@ -10,13 +10,13 @@
         "INa": "(gNa * q_gna**((dT/kelvin)/10)) * mInf(v)**3 * h * (ENa(v)-v)"
     },
     "fun": {
-        "hAlpha(v)": "(0.07 * exp(-(v/mV+58)/20)/ms) * q_ah**((dT/kelvin)/10)",
-        "hBeta(v)": "(1/( 1 + exp(-0.1*(v/mV+28)) )/ms) * q_bh**((dT/kelvin)/10)",
-        "mAlpha(v)": "(-0.1*(v/mV+35)/ ( exp(-0.1*(v/mV+35)) - 1 )) * (q_am ** ((dT/kelvin)/10))",
-        "mBeta(v)": "(4* exp(-(v/mV+60)/18)) * (q_bm ** ((dT/kelvin)/10))",
+        "hAlpha(v)": "(0.07 * exp(-(v/mV+58.)/20.)/ms) * q_ah**((dT/kelvin)/10.)",
+        "hBeta(v)": "(1/( 1 + exp(-0.1*(v/mV+28.)) )/ms) * q_bh**((dT/kelvin)/10.)",
+        "mAlpha(v)": "(-0.1*(v/mV+35.)/ ( exp(-0.1*(v/mV+35.)) - 1 )) * (q_am ** ((dT/kelvin)/10.))",
+        "mBeta(v)": "(4* exp(-(v/mV+60.)/18)) * (q_bm ** ((dT/kelvin)/10.))",
         "mInf(v)": "mAlpha(v) / (mAlpha(v) + mBeta(v))",
-        "nAlpha(v)": "(-0.01*(v/mV+34+bn)/ ( exp(-0.1*(v/mV+34+bn)) - 1 )/ms) * q_an**((dT/kelvin)/10)",
-        "nBeta(v)": "(0.125* exp(-(v/mV+44+bn)/80)/ms) * q_bn**((dT/kelvin)/10)",
+        "nAlpha(v)": "(-0.01*(v/mV+34.+bn)/ ( exp(-0.1*(v/mV+34.+bn)) - 1. )/ms) * q_an**((dT/kelvin)/10.)",
+        "nBeta(v)": "(0.125* exp(-(v/mV+44.+bn)/80.)/ms) * q_bn**((dT/kelvin)/10.)",
 
         "EK(v)": "EK_ref * (1 + ((dT/kelvin)/(T_ref/kelvin)))",
         "EL(v)": "EL_ref * (1 + ((dT/kelvin)/(T_ref/kelvin)))",
